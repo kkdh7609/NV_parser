@@ -1,6 +1,7 @@
 import csv
 import datetime
 import parse_rank
+import time
 
 
 class CsvMaker:
@@ -29,7 +30,7 @@ class CsvMaker:
         for rank in rank_list:
             print(rank)
             wr.writerow(rank)
-        
+        time.sleep(1)
 
 
 if __name__ == "__main__":

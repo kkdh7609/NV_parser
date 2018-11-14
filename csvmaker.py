@@ -5,12 +5,13 @@ import time
 
 
 class CsvMaker:
-    def __init__(self, path, start_date, end_date):
+    def __init__(self, path, start_date, end_date, parse_case=1):
         self.path = path
         self.date_list = [start_date + datetime.timedelta(days=x) for x in range(0, (end_date - start_date).days)]
+        self.parse_case = parse_case
 
     def save_all(self, min_term):                  # (60 % min_term) should be 0
-        ps = parse_rank.Parser()
+        ps = parse_rank.Parser(case=self.parse_case)
         with open(self.path, 'w', encoding='euc-kr', newline='') as f:
             writer = csv.writer(f, delimiter=',')
             for date in self.date_list:
@@ -30,7 +31,7 @@ class CsvMaker:
         for rank in rank_list:
             print(rank)
             wr.writerow(rank)
-        time.sleep(1)
+        time.sleep(2)
 
 
 if __name__ == "__main__":
